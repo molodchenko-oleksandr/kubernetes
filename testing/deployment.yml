@@ -24,4 +24,4 @@ spec:
       - name: kuber-app
         image: nginx:alpine
         ports:
-        - containerPort: 8080
+        - containerPort: 80
