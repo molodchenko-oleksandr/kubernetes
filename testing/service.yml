@@ -1,27 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: kuber
-  labels:
-    app: kuber
+  name: kuber-service
 spec:
-  replicas: 5
-  minReadySeconds: 10
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
-    matchLabels:
-      app: http-server
-  template:
-    metadata:
-      labels:
-        app: http-server
-    spec:
-      containers:
-      - name: kuber-app
-        image: nginx:alpine
-        ports:
-        - containerPort: 80
+    app: http-server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
